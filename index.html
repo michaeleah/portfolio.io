@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+    /* Reset and Base */
     * {
       margin: 0;
       padding: 0;
@@ -19,9 +20,10 @@
       background: #cce3e0;
       color: #2e2e2e;
       overflow-x: hidden;
-      padding-top: 70px;
+      padding-top: 70px; /* fix nav overlap */
     }
 
+    /* Navigation Bar */
     .navbar {
       position: fixed;
       top: 0;
@@ -60,6 +62,15 @@
       color: #6b8e23;
     }
 
+    /* Burger menu - hidden on desktop */
+    .burger {
+      display: none;
+      cursor: pointer;
+      font-size: 1.8rem;
+      color: #5b4c40;
+    }
+
+    /* Hero Section */
     .hero {
       height: 100vh;
       background: linear-gradient(to top, #cce3e0, #e8f5ff);
@@ -97,6 +108,7 @@
       background: #ffeccf;
     }
 
+    /* Clouds */
     .clouds::before {
       content: '';
       background: url('clouds.png') repeat-x;
@@ -115,6 +127,7 @@
       100% { transform: translateX(-66.6%); }
     }
 
+    /* About Me Section */
     .about {
       background-color: #fefcf6;
       padding: 4rem 2rem;
@@ -152,6 +165,7 @@
       margin: 0 auto 1rem auto;
     }
 
+    /* Projects Section */
     .projects {
       background-color: #fef9f1;
       padding: 4rem 2rem;
@@ -217,8 +231,32 @@
       background: #ffeccf;
     }
 
-    section {
-      scroll-margin-top: 100px;
+    /* Skills Section */
+    #skills {
+      background: linear-gradient(to bottom, #fefcf6, #e7f4f1);
+      position: relative;
+      overflow: hidden;
+      z-index: 0;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    #skills::before {
+      content: '';
+      background: url('leafy-border.png') repeat-x;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300%;
+      height: 150px;
+      opacity: 0.15;
+      animation: softClouds 90s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes softClouds {
+      from { transform: translateX(0); }
+      to { transform: translateX(-66.6%); }
     }
 
     .skills-grid {
@@ -240,6 +278,7 @@
       transition: transform 0.5s ease, box-shadow 0.3s ease;
       animation: floatCard 6s ease-in-out infinite;
       position: relative;
+      z-index: 1;
     }
 
     @keyframes floatCard {
@@ -264,6 +303,7 @@
       margin-bottom: 0.5rem;
     }
 
+    /* Contact Section */
     .contact-section {
       background: linear-gradient(to top, #fdfcf7, #e6f2f1);
       padding: 4rem 2rem;
@@ -283,6 +323,12 @@
       font-size: 2.5rem;
       margin-bottom: 1rem;
       color: #5b4c40;
+    }
+
+    .contact-section p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: #444;
     }
 
     .contact-links p {
@@ -315,8 +361,15 @@
       border-radius: 12px;
       border: 1px dashed #e3d4bc;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      animation: floatNote 6s ease-in-out infinite;
     }
 
+    @keyframes floatNote {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* Footer */
     .site-footer {
       background: linear-gradient(to top, #fefaf5, transparent);
       color: #5b4c40;
@@ -330,11 +383,72 @@
     .site-footer p {
       margin: 0.3rem 0;
     }
+
+    /* Responsive tweaks for mobile */
+    @media (max-width: 768px) {
+      /* Nav links stack */
+      .nav-links {
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.95);
+        position: fixed;
+        top: 70px;
+        right: 0;
+        width: 220px;
+        padding: 1rem 2rem;
+        display: none; /* hidden by default */
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        height: calc(100vh - 70px);
+        overflow-y: auto;
+        z-index: 200;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        margin-bottom: 1.2rem;
+      }
+
+      /* Show burger icon */
+      .burger {
+        display: block;
+      }
+
+      .hero {
+        height: auto;
+        padding: 4rem 1rem 2rem;
+      }
+
+      .intro h1 {
+        font-size: 2rem;
+      }
+
+      .intro p {
+        font-size: 1rem;
+      }
+
+      .projects-container,
+      .skills-grid {
+        grid-template-columns: 1fr; /* stack cards */
+      }
+
+      .about-container,
+      .contact-container {
+        padding: 0 1rem;
+      }
+
+      /* Responsive images */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
   </style>
 </head>
-
 <body>
 
+  <!-- Navigation -->
   <nav class="navbar">
     <div class="logo">Michaeleah 🌸</div>
     <ul class="nav-links">
@@ -343,8 +457,12 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="burger">
+      <i class="fas fa-bars"></i>
+    </div>
   </nav>
 
+  <!-- Hero Section -->
   <div class="hero">
     <div class="clouds"></div>
     <div class="intro">
@@ -354,6 +472,7 @@
     </div>
   </div>
 
+  <!-- About Me Section -->
   <section id="about" class="about">
     <div class="about-container">
       <img src="image me.png" alt="Your profile" class="about-img">
@@ -365,17 +484,19 @@
     </div>
   </section>
 
+  <!-- Projects Section -->
   <section id="projects" class="projects">
     <h2>My Projects 🧳</h2>
     <div class="projects-container">
       <div class="project-card">
-        <img src="1.png" alt="Project 1" />
+        <img src="1.png" alt="Podcast Website" />
         <h3>Nexus of Next Website</h3>
         <p>A podcast website created on previous job for hosting podcast episodes.</p>
         <a href="https://nexusofnext.com/" target="_blank" class="btn">View Project</a>
       </div>
+
       <div class="project-card">
-        <img src="TheSims4_Banner.jpg" alt="Project 2" />
+        <img src="TheSims4_Banner.jpg" alt="Fan Website" />
         <h3>A fan website created to showcase creativity</h3>
         <p>Creative colors and mobile friendly.</p>
         <a href="https://michaeleah.github.io/sims.github.io./index.html" target="_blank" class="btn">View Project</a>
@@ -383,50 +504,77 @@
     </div>
   </section>
 
-  <section id="skills" class="about">
-    <div class="about-container">
-      <h2 style="margin-bottom: 2rem;">Skills & Tools 🌸</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <i class="fas fa-code"></i>
-          <h3>Languages</h3>
-          <p>HTML, CSS, JavaScript, Python, SQL</p>
-        </div>
-        <div class="skill-card">
-          <i class="fas fa-cubes"></i>
-          <h3>Frameworks & Libraries</h3>
-          <p>Vue.js, React.js, Node.js, Django, DRF, Bootstrap</p>
-        </div>
-        <div class="skill-card">
-          <i class="fas fa-toolbox"></i>
-          <h3>Tools & Tech</h3>
-          <p>Git, GitHub, VS Code, Figma, Microsoft 365, Azure, Access, Excel</p>
-        </div>
-        <div class="skill-card">
-          <i class="fas fa-award"></i>
-          <h3>Certifications</h3>
-          <p>Azure Admin Associate<br>IT Specialist: HTML & CSS<br>MTA: Python<br>DSLR Videography<br>Social Media Marketing</p>
-        </div>
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2 style="margin-bottom: 2rem;">Skills & Tools 🌸</h2>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <i class="fas fa-code"></i>
+        <h3>Languages</h3>
+        <p>HTML, CSS, JavaScript, Python, SQL</p>
       </div>
+
+      <div class="skill-card">
+        <i class="fas fa-cubes"></i>
+        <h3>Frameworks & Libraries</h3>
+        <p>Vue.js, React.js, Node.js, Django, DRF, Bootstrap</p>
+      </div>
+
+      <div class="skill-card">
+        <i class="fas fa-toolbox"></i>
+        <h3>Tools & Tech</h3>
+        <p>Git, GitHub, VS Code, Figma, Microsoft 365, Azure, Access, Excel</p>
+      </div>
+
+      <div class="skill-card">
+        <i class="fas fa-award"></i>
+        <h3>Certifications</h3>
+        <p>
+          Azure Admin Associate<br>
+          IT Specialist: HTML & CSS<br>
+          MTA: Python<br>
+          DSLR Videography<br>
+          Social Media Marketing
+        </p>
+      </div>
+
     </div>
   </section>
 
+  <!-- Contact Section -->
   <section id="contact" class="contact-section">
     <div class="contact-container">
       <h2>Let’s Connect! 📬</h2>
       <p>I’d love to hear from you — whether it’s a collaboration, a question, or just to say hi 🌸</p>
+
       <div class="contact-links">
         <p><i class="fas fa-envelope"></i> <a href="mailto:michaeleah_murray@outlook.com">michaeleah_murray@outlook.com</a></p>
         <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/michaeleah-anne-murray-256183268/" target="_blank">linkedin profile</a></p>
       </div>
-      <div class="contact-response">💌 I’ll get back to you with some magic soon!</div>
+
+      <div class="contact-response">
+        💌 I’ll get back to you with some magic soon!
+      </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <p>🌿 Made with love by Michaeleah · 2025</p>
     <p>Inspired by the magic of Studio Ghibli ✨</p>
   </footer>
+
+  <!-- Burger menu toggle script -->
+  <script>
+    const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>

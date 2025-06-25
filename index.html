@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Michaeleah's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Cormorant+Garamond&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: #cce3e0;
+      color: #2e2e2e;
+      overflow-x: hidden;
+      padding-top: 70px;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      z-index: 100;
+      height: 70px;
+    }
+
+    .logo {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      color: #5b4c40;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #6b8e23;
+    }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to top, #cce3e0, #e8f5ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 2rem;
+    }
+
+    .intro h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      background: #fce8c8;
+      border: 2px solid #e2c49a;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #2e2e2e;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #ffeccf;
+    }
+
+    .clouds::before {
+      content: '';
+      background: url('clouds.png') repeat-x;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100px;
+      width: 300%;
+      animation: cloudMove 60s linear infinite;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    @keyframes cloudMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-66.6%); }
+    }
+
+    .about {
+      background-color: #fefcf6;
+      padding: 4rem 2rem;
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .about-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #d4c8b0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .about-text h2 {
+      font-size: 2.2rem;
+      font-family: 'Dancing Script', cursive;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto 1rem auto;
+    }
+
+    .projects {
+      background-color: #fef9f1;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .projects h2 {
+      font-size: 2.5rem;
+      font-family: 'Dancing Script', cursive;
+      margin-bottom: 2rem;
+    }
+
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .project-card {
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 1.5rem;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #4a403a;
+    }
+
+    .project-card p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #555;
+    }
+
+    .project-card .btn {
+      background: #fce8c8;
+      border: 2px solid #e2c49a;
+      padding: 0.5rem 1.2rem;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #2e2e2e;
+      transition: background 0.3s ease;
+    }
+
+    .project-card .btn:hover {
+      background: #ffeccf;
+    }
+
+    section {
+      scroll-margin-top: 100px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      z-index: 1;
+      position: relative;
+    }
+
+    .skill-card {
+      background: #fffaf3;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.5s ease, box-shadow 0.3s ease;
+      animation: floatCard 6s ease-in-out infinite;
+      position: relative;
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .skill-card:hover {
+      box-shadow: 0 6px 18px rgba(218, 188, 154, 0.3);
+    }
+
+    .skill-card i {
+      font-size: 2.2rem;
+      color: #d0a97a;
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1.3rem;
+      font-family: 'Dancing Script', cursive;
+      color: #5b4c40;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-section {
+      background: linear-gradient(to top, #fdfcf7, #e6f2f1);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .contact-container {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-section h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #5b4c40;
+    }
+
+    .contact-links p {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-links i {
+      color: #d0a97a;
+      margin-right: 0.5rem;
+    }
+
+    .contact-links a {
+      color: #4a403a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-links a:hover {
+      color: #6b8e23;
+    }
+
+    .contact-response {
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      color: #5b4c40;
+      font-style: italic;
+      background: #fffaf3;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      border: 1px dashed #e3d4bc;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .site-footer {
+      background: linear-gradient(to top, #fefaf5, transparent);
+      color: #5b4c40;
+      text-align: center;
+      padding: 2rem 1rem 3rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      margin-top: 3rem;
+    }
+
+    .site-footer p {
+      margin: 0.3rem 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo">Michaeleah 🌸</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="clouds"></div>
+    <div class="intro">
+      <h1>Hi, I’m Michaeleah ✨</h1>
+      <p>Web designer • Videographer • Social media</p>
+      <a href="#projects" class="btn">Explore My World</a>
+    </div>
+  </div>
+
+  <section id="about" class="about">
+    <div class="about-container">
+      <img src="image me.png" alt="Your profile" class="about-img">
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>Hi! I’m Michaeleah, a passionate web developer with a focus on building clean, responsive, and user-friendly websites. </p>
+        <p>I enjoy turning ideas into real, functional digital experiences using modern web technologies.🌙</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>My Projects 🧳</h2>
+    <div class="projects-container">
+      <div class="project-card">
+        <img src="1.png" alt="Project 1" />
+        <h3>Nexus of Next Website</h3>
+        <p>A podcast website created on previous job for hosting podcast episodes.</p>
+        <a href="https://nexusofnext.com/" target="_blank" class="btn">View Project</a>
+      </div>
+      <div class="project-card">
+        <img src="TheSims4_Banner.jpg" alt="Project 2" />
+        <h3>A fan website created to showcase creativity</h3>
+        <p>Creative colors and mobile friendly.</p>
+        <a href="https://michaeleah.github.io/sims.github.io./index.html" target="_blank" class="btn">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="about">
+    <div class="about-container">
+      <h2 style="margin-bottom: 2rem;">Skills & Tools 🌸</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <i class="fas fa-code"></i>
+          <h3>Languages</h3>
+          <p>HTML, CSS, JavaScript, Python, SQL</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-cubes"></i>
+          <h3>Frameworks & Libraries</h3>
+          <p>Vue.js, React.js, Node.js, Django, DRF, Bootstrap</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-toolbox"></i>
+          <h3>Tools & Tech</h3>
+          <p>Git, GitHub, VS Code, Figma, Microsoft 365, Azure, Access, Excel</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-award"></i>
+          <h3>Certifications</h3>
+          <p>Azure Admin Associate<br>IT Specialist: HTML & CSS<br>MTA: Python<br>DSLR Videography<br>Social Media Marketing</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="contact-container">
+      <h2>Let’s Connect! 📬</h2>
+      <p>I’d love to hear from you — whether it’s a collaboration, a question, or just to say hi 🌸</p>
+      <div class="contact-links">
+        <p><i class="fas fa-envelope"></i> <a href="mailto:michaeleah_murray@outlook.com">michaeleah_murray@outlook.com</a></p>
+        <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/michaeleah-anne-murray-256183268/" target="_blank">linkedin profile</a></p>
+      </div>
+      <div class="contact-response">💌 I’ll get back to you with some magic soon!</div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>🌿 Made with love by Michaeleah · 2025</p>
+    <p>Inspired by the magic of Studio Ghibli ✨</p>
+  </footer>
+
+</body>
+</html>
